@@ -31,5 +31,59 @@ namespace poultrymanagement_0.Services
 
             Console.WriteLine(result);
         }
+
+        public void CheckPrice(string breed)
+        {
+            Bird bird = Database.Where(x => x.Breed == breed).FirstOrDefault();
+
+            if (bird == null)
+            {
+                Console.WriteLine($"We do not have {breed}");
+                return;
+            }
+
+            string amount = bird.Price.ToString("c").Substring(1);
+
+            string result = $"{breed.ToUpper()} is NGN {amount}";
+
+            Console.WriteLine(result);
+        }
+
+        public void MakeBirdSick(int id)
+        {
+            Bird bird = Database.Where(x => x.Id == id).FirstOrDefault();
+            
+            if(bird == null)
+            {
+                Console.WriteLine($"Bird with id = {id} is not found");
+                return;
+            }
+            bird.IsSick = true;
+        }
+
+        public void NumberOfSickBirds()
+        {
+            int num = Database.Count(b => b.IsSick == true);
+            Console.WriteLine($"There are {num} sick birds");
+        }
+
+        public void NumberOfBirdsSold()
+        {
+            int numSold = Database.Count(b => b.IsSold == true);
+            Console.WriteLine($"There are {numSold} bird sold");
+        }
+
+        public void SellBird(int id)
+        {
+            Bird bird = Database.Where(x => x.Id == id).FirstOrDefault();
+            if(bird == null)
+            {
+                Console.WriteLine($"Bird with id = {id} is not found");
+                return;
+            }
+            bird.IsSold = true;
+            bird.DateSold = DateTime.Now.AddDays(-2);
+            Console.WriteLine($"One {bird.Breed} has been sold!!!");
+        }
     }
 }

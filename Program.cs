@@ -33,3 +33,12 @@ poultryService.AddOne(secondBird);
 Console.WriteLine("==========================");
 
 poultryService.HowManyForSale();
+poultryService.CheckPrice("Broilers");
+poultryService.CheckPrice("broiler");
+poultryService.CheckPrice("Layers");
+poultryService.MakeBirdSick(1);
+poultryService.MakeBirdSick(2);
+poultryService.NumberOfSickBirds();
+poultryService.NumberOfBirdsSold();
+poultryService.SellBird(2);
+poultryService.NumberOfBirdsSold();
